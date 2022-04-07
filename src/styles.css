@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f2f7f5;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+header {
+    width: 100%;
+    margin-top: 24px;
+    background-color: rgb(255, 255, 255);
+}
+

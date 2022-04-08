@@ -1,7 +1,8 @@
 import { StrictMode, useState, useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import SomePage from "./SomePage";
+import Page from "./Page";
+import NotFound from "./NotFound";
 import auth from "../auth";
 import "./styles.css";
 import BreallyLogo from "./assets/logo.svg";
@@ -13,10 +14,10 @@ const App = () => {
   )}`;
 
   const [isAuthorized, setAuthorized] = useState(false);
+  const [navPages, setNavPages] = useState([]);
 
   useEffect(() => {
-    console.log("Breally!");
-    fetch("https://adchitects-cms.herokuapp.com", {
+    fetch("https://adchitects-cms.herokuapp.com/pages", {
       headers: {
         "Content-Type": "application/json",
         Authorization,
@@ -25,24 +26,28 @@ const App = () => {
       .then((response) => {
         if (response.status === 200) {
           setAuthorized(true);
-          console.log(response);
         }
-        return response.body;
+        return response.json();
       })
-      .then((body) => console.log(body));
+      .then((body) => setNavPages(body));
   }, []);
 
+  if (!isAuthorized) {
+    return (
+      <div id="LoadingScreen">
+        <p>Loading...</p>
+      </div>
+    );
+  }
   return (
     <StrictMode>
       <BrowserRouter>
         <header>
-          <Link to="/">
-            {isAuthorized ? (
+          <div id="navbar">
+            <Link to="/">
               <img src={BreallyLogo} alt="Breally Logo" />
-            ) : (
-              <p>Not authorized</p>
-            )}
-          </Link>
+            </Link>
+          </div>
         </header>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -54,7 +59,10 @@ const App = () => {
           culpa qui officia deserunt mollit anim id est laborum
         </p>
         <Routes>
-          <Route path="/somepage/:id" element={<SomePage />} />
+          {navPages.map(({ url, id }) => (
+            <Route exact key={id} path={url} element={<Page id={id} />} />
+          ))}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </StrictMode>

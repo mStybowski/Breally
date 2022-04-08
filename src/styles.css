@@ -14,3 +14,23 @@ header {
     background-color: rgb(255, 255, 255);
 }
 
+@keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+#LoadingScreen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: black;
+}
+
+#LoadingScreen p{
+    color: white;
+}

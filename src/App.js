@@ -1,6 +1,6 @@
-import { StrictMode, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { render } from "react-dom";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Page from "./Page";
 import NotFound from "./NotFound";
 import auth from "../auth";
@@ -40,32 +40,29 @@ const App = () => {
     );
   }
   return (
-    <StrictMode>
-      <BrowserRouter>
-        <header>
-          <div id="navbar">
-            <Link to="/">
-              <img src={BreallyLogo} alt="Breally Logo" />
-            </Link>
-          </div>
-        </header>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum
-        </p>
-        <Routes>
-          {navPages.map(({ url, id }) => (
-            <Route exact key={id} path={url} element={<Page id={id} />} />
-          ))}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </StrictMode>
+    <Router>
+      <header>
+        <div id="navbar">
+          <Link to="/">
+            <img src={BreallyLogo} alt="Breally Logo" />
+          </Link>
+          <Link to="/products">Products</Link>
+          <Link to="/solutions">Solutions</Link>
+          <Link to="/resources">Resources</Link>
+          <Link to="/about">About</Link>
+        </div>
+      </header>
+      <Switch>
+        {navPages.map(({ url, id }) => (
+          <Route exact key={id} path={url}>
+            <Page id={id} />
+          </Route>
+        ))}
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

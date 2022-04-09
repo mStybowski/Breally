@@ -9,9 +9,7 @@ import BreallyLogo from "./assets/logo.svg";
 
 const App = () => {
   const { credentials } = auth;
-  const Authorization = `Basic ${new Buffer.from(credentials).toString(
-    "base64"
-  )}`;
+  const Authorization = `Basic ${btoa(credentials)}`;
 
   const [isAuthorized, setAuthorized] = useState(false);
   const [navPages, setNavPages] = useState([]);
@@ -42,14 +40,32 @@ const App = () => {
   return (
     <Router>
       <header>
-        <div id="navbar">
-          <Link to="/">
-            <img src={BreallyLogo} alt="Breally Logo" />
-          </Link>
-          <Link to="/products">Products</Link>
-          <Link to="/solutions">Solutions</Link>
-          <Link to="/resources">Resources</Link>
-          <Link to="/about">About</Link>
+        <div className="navbar">
+          <div className="navbarMainContent">
+            <Link to="/">
+              <img src={BreallyLogo} alt="Breally Logo" />
+            </Link>
+            <div className="navItems">
+              <Link to="/products">
+                <div className="navItem">Products</div>
+              </Link>
+              <Link to="/solutions">
+                <div className="navItem">Solutions</div>
+              </Link>
+              <Link to="/resources">
+                <div className="navItem">Resources</div>
+              </Link>
+              <Link to="/about">
+                <div className="navItem">About</div>
+              </Link>
+            </div>
+          </div>
+
+          <div className="contactUsSection">
+            <Link className="contactUsLink" to="#">
+              <div className="navbarContactButton">Contact Us</div>
+            </Link>
+          </div>
         </div>
       </header>
       <Switch>

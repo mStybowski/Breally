@@ -8,9 +8,7 @@ import Testimonials from "./sections/Testimonials";
 
 const Page = ({ id: pageId }) => {
   const { credentials } = auth;
-  const Authorization = `Basic ${new Buffer.from(credentials).toString(
-    "base64"
-  )}`;
+  const Authorization = `Basic ${btoa(credentials)}`;
 
   const [sectionsObj, setSectionObj] = useState(null);
 

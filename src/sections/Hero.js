@@ -1,10 +1,11 @@
 const Hero = (props) => {
   return (
-    <>
-      <h1>{props.text}</h1>
-      <h3>{props.text}</h3>
-      <img alt={props.text} src={props.img}></img>
-    </>
+    <div className="hero">
+      <div className="hero-wrapper">
+        <h1>{props.text}</h1>
+        <img alt={props.text} src={props.img}></img>
+      </div>
+    </div>
   );
 };
 

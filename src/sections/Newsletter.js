@@ -4,9 +4,7 @@ import auth from "../../auth";
 
 const Newsletter = (props) => {
   const { credentials } = auth;
-  const Authorization = `Basic ${new Buffer.from(credentials).toString(
-    "base64"
-  )}`;
+  const Authorization = `Basic ${btoa(credentials)}`;
 
   const [mail, setMail] = useState("");
 

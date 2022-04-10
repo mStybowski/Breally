@@ -1,9 +1,15 @@
+import "./Hero.css";
+
 const Hero = (props) => {
   return (
     <div className="hero">
       <div className="hero-wrapper">
-        <h1>{props.text}</h1>
-        <img alt={props.text} src={props.img}></img>
+        <div className="half-flex">
+          <h1 className="hero-text">{props.text}</h1>
+        </div>
+        <div className="half-flex">
+          <img alt={props.text} src={props.img}></img>
+        </div>
       </div>
     </div>
   );

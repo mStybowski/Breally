@@ -1,0 +1,26 @@
+.newsletter-row{
+    width: 100%;
+    padding: 100px 0;
+  }
+  
+  .newsletter-wrapper{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .newsletter-wrapper input{
+    width: 350px;
+    padding: 14px 40px;
+    font-size: 16px;
+    border-radius: 99px;
+    margin-right: 50px;
+    border: none;
+    background-color: var(--light-gray);
+  }
+  
+  .newsletter-wrapper form{
+    padding: 40px 0;
+  }

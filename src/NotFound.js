@@ -1,8 +1,9 @@
-const NotFound = (props) => {
+const NotFound = () => {
   return (
-    <>
-      <h1>You are lost</h1>
-    </>
+    <div className="not-found">
+      <h1>404</h1>
+      <h3>Nothing to do here.</h3>
+    </div>
   );
 };
 

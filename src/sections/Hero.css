@@ -1,0 +1,42 @@
+.hero{
+    width: 100%;
+    padding: 100px 0;
+  }
+  
+  .hero-wrapper{
+    max-width: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+  
+  .half-flex{
+    flex: 1;
+  }
+  
+  .hero-text{
+    max-width: 80%;
+    color: var(--black);
+  }
+  
+  
+  .hero-wrapper img{
+    height: 384px;
+    width: 516px;
+    object-fit: cover;
+  }
+  
+  
+  #LoadingScreen{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: black;
+  }
+  
+  #LoadingScreen p{
+    color: white;
+  }
+  

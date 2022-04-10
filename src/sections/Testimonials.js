@@ -1,4 +1,5 @@
 import quotationMark from "../assets/quotation-mark.svg";
+import "./Testimonials.css";
 
 const Testimonials = (props) => {
   return (

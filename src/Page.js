@@ -1,24 +1,15 @@
-// import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import auth from "../auth";
+import { initialFetch } from "./InitialFetch";
 
 import Hero from "./sections/Hero";
 import Newsletter from "./sections/Newsletter";
 import Testimonials from "./sections/Testimonials";
 
 const Page = ({ id: pageId }) => {
-  const { credentials } = auth;
-  const Authorization = `Basic ${btoa(credentials)}`;
-
   const [sectionsObj, setSectionObj] = useState(null);
 
   useEffect(() => {
-    fetch(`https://adchitects-cms.herokuapp.com/page/${pageId}`, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization,
-      },
-    })
+    initialFetch(`page/${pageId}`)
       .then((response) => {
         return response.json();
       })

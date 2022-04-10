@@ -1,36 +1,28 @@
 import { useState, useEffect } from "react";
 import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 import Page from "./Page";
 import NotFound from "./NotFound";
-import auth from "../auth";
+import { initialFetch } from "./InitialFetch";
+
 import "./styles.css";
 import BreallyLogo from "./assets/logo.svg";
 
 const App = () => {
-  const { credentials } = auth;
-  const Authorization = `Basic ${btoa(credentials)}`;
-
-  const [isAuthorized, setAuthorized] = useState(false);
+  const [responseStatus, setResponseStatus] = useState(false);
   const [navPages, setNavPages] = useState([]);
 
   useEffect(() => {
-    fetch("https://adchitects-cms.herokuapp.com/pages", {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization,
-      },
-    })
+    initialFetch(`pages`)
       .then((response) => {
-        if (response.status === 200) {
-          setAuthorized(true);
-        }
+        setResponseStatus(response.ok);
         return response.json();
       })
       .then((body) => setNavPages(body));
   }, []);
 
-  if (!isAuthorized) {
+  if (!responseStatus) {
     return (
       <div id="LoadingScreen">
         <p>Loading...</p>
@@ -62,9 +54,7 @@ const App = () => {
           </div>
 
           <div className="contactUsSection">
-            <Link className="contactUsLink" to="#">
-              <div className="navbarContactButton">Contact Us</div>
-            </Link>
+            <button className="decor-button">Contact Us</button>
           </div>
         </div>
       </header>

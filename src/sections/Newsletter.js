@@ -1,57 +1,53 @@
-import { toaster } from "evergreen-ui";
 import { useState } from "react";
-import auth from "../../auth";
+import { initialFetch } from "../InitialFetch";
+import "./Newsletter.css";
 
-const Newsletter = (props) => {
-  const { credentials } = auth;
-  const Authorization = `Basic ${btoa(credentials)}`;
-
+const Newsletter = () => {
   const [mail, setMail] = useState("");
+  const [responseMessage, setResponseMessage] = useState(null);
+  const [responseStatus, setResponseStatus] = useState(null);
 
-  async function newsletterSignupAction() {
-    const res = await fetch(`https://adchitects-cms.herokuapp.com/newsletter`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization,
-      },
-      body: JSON.stringify({ email: mail }),
-    });
-
-    const responseJSON = await res.json();
-
-    if (res.status === 200) {
-      toaster.success(responseJSON.message);
-    } else {
-      toaster.warning(responseJSON.message);
-    }
-
-    console.log(responseJSON);
+  function newsletterSignupAction() {
+    initialFetch("newsletter", JSON.stringify({ email: mail }), "POST")
+      .then((response) => {
+        setResponseStatus(response.ok);
+        return response.json();
+      })
+      .then((body) => setResponseMessage(body.message));
   }
 
   return (
-    <>
-      <h1>Sign up for Newsletter</h1>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          newsletterSignupAction();
-        }}
-      >
-        <label htmlFor="email">
-          Location
-          <input
-            id="email"
-            value={mail}
-            placeholder="Type your email"
-            onChange={(e) => setMail(e.target.value)}
-          />
-        </label>
+    <div className="newsletter-row">
+      <div className="newsletter-wrapper">
+        <h1>Sign up for Newsletter</h1>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            newsletterSignupAction();
+          }}
+        >
+          <label htmlFor="email">
+            <input
+              id="email"
+              value={mail}
+              placeholder="Type your email"
+              onChange={(e) => setMail(e.target.value)}
+            />
+          </label>
 
-        <button>Submit</button>
-      </form>
-      <h3>Type: {props.type}</h3>
-    </>
+          <button className="decor-button">Submit</button>
+        </form>
+        {responseMessage ? (
+          <div
+            style={{
+              color: responseStatus ? "#5EDC4B" : "#fc7303",
+            }}
+          >
+            {responseMessage}
+          </div>
+        ) : null}
+      </div>
+    </div>
   );
 };
 

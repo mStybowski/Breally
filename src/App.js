@@ -9,6 +9,20 @@ import { initialFetch } from "./InitialFetch";
 import "./styles.css";
 import BreallyLogo from "./assets/logo.svg";
 
+const urlToDisplayName = (url) => {
+  let displayName;
+  if (url === "/") {
+    displayName = "Home";
+  } else {
+    let lowerCaseDisplayName = url.substring(1);
+    displayName =
+      lowerCaseDisplayName.charAt(0).toUpperCase() +
+      lowerCaseDisplayName.slice(1);
+  }
+
+  return displayName;
+};
+
 const App = () => {
   const [responseStatus, setResponseStatus] = useState(false);
   const [navPages, setNavPages] = useState([]);
@@ -38,18 +52,11 @@ const App = () => {
               <img src={BreallyLogo} alt="Breally Logo" />
             </Link>
             <div className="nav-items">
-              <Link to="/products">
-                <div className="nav-item">Products</div>
-              </Link>
-              <Link to="/solutions">
-                <div className="nav-item">Solutions</div>
-              </Link>
-              <Link to="/resources">
-                <div className="nav-item">Resources</div>
-              </Link>
-              <Link to="/about">
-                <div className="nav-item">About</div>
-              </Link>
+              {navPages.map(({ url, id }) => (
+                <Link to={url} key={id}>
+                  <div className="nav-item">{urlToDisplayName(url)}</div>
+                </Link>
+              ))}
             </div>
           </div>
 

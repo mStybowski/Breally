@@ -34,6 +34,8 @@ ___
 
         npm run build
 
-Doesn't work? You probably need API credentials 😛
+Doesn't work? You probably need API credentials 😛 Create `auth.js` file in outer-most directory and export from there an object with `credentials` property which is string containing (you guessed it) credentials in [Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) format. 
+
+Enjoy.
 
 

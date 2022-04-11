@@ -5,23 +5,10 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Page from "./Page";
 import NotFound from "./NotFound";
 import { initialFetch } from "./InitialFetch";
+import { urlToDisplayName } from "./utils";
 
 import "./styles.css";
 import BreallyLogo from "./assets/logo.svg";
-
-const urlToDisplayName = (url) => {
-  let displayName;
-  if (url === "/") {
-    displayName = "Home";
-  } else {
-    let lowerCaseDisplayName = url.substring(1);
-    displayName =
-      lowerCaseDisplayName.charAt(0).toUpperCase() +
-      lowerCaseDisplayName.slice(1);
-  }
-
-  return displayName;
-};
 
 const App = () => {
   const [responseStatus, setResponseStatus] = useState(false);
@@ -68,7 +55,7 @@ const App = () => {
       <Switch>
         {navPages.map(({ url, id }) => (
           <Route exact key={id} path={url}>
-            <Page id={id} />
+            <Page id={id} url={url} />
           </Route>
         ))}
         <Route path="*">

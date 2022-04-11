@@ -4,9 +4,12 @@ import { initialFetch } from "./InitialFetch";
 import Hero from "./sections/Hero";
 import Newsletter from "./sections/Newsletter";
 import Testimonials from "./sections/Testimonials";
+import { urlToDisplayName } from "./utils";
 
-const Page = ({ id: pageId }) => {
+const Page = ({ id: pageId, url }) => {
   const [sectionsObj, setSectionObj] = useState(null);
+
+  document.title = urlToDisplayName(url);
 
   useEffect(() => {
     initialFetch(`page/${pageId}`)

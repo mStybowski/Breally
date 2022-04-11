@@ -24,7 +24,7 @@ const App = () => {
 
   if (!responseStatus) {
     return (
-      <div id="LoadingScreen">
+      <div id="loading-screen">
         <p>Loading...</p>
       </div>
     );
@@ -33,27 +33,27 @@ const App = () => {
     <Router>
       <header>
         <div className="navbar">
-          <div className="navbarMainContent">
+          <div className="navbar-main-content">
             <Link to="/">
               <img src={BreallyLogo} alt="Breally Logo" />
             </Link>
-            <div className="navItems">
+            <div className="nav-items">
               <Link to="/products">
-                <div className="navItem">Products</div>
+                <div className="nav-item">Products</div>
               </Link>
               <Link to="/solutions">
-                <div className="navItem">Solutions</div>
+                <div className="nav-item">Solutions</div>
               </Link>
               <Link to="/resources">
-                <div className="navItem">Resources</div>
+                <div className="nav-item">Resources</div>
               </Link>
               <Link to="/about">
-                <div className="navItem">About</div>
+                <div className="nav-item">About</div>
               </Link>
             </div>
           </div>
 
-          <div className="contactUsSection">
+          <div>
             <button className="decor-button">Contact Us</button>
           </div>
         </div>

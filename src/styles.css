@@ -48,18 +48,18 @@ header {
   padding: 0 100px;
 }
 
-.navItems{
+.nav-items{
   display: flex;
   margin-left: 90px;
 }
 
-.navItem{
+.nav-item{
   display: block;
   margin: 0 15px;
   text-decoration: none;
 }
 
-.navbarMainContent{
+.navbar-main-content{
   display: flex;
   align-items: center;
   margin-top: 10px;

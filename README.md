@@ -1,6 +1,6 @@
 # Breally
 
-Breally is a small project developed for recruitment purposes. It dynamically fetches data from API to render some HTML.
+Breally is a small project based on React. It dynamically fetches data from API to render some HTML.
 
 **Framework:** React v17 using React Router v5
 
